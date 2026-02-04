@@ -2,6 +2,10 @@
 
 An Agent Skill that enables AI assistants to render responses as interactive UI components instead of plain text. Built on [Crayon UI](https://crayonai.org/ui/), this skill transforms structured JSON into beautiful, interactive interfaces.
 
+## Demo
+
+<video src="Crayon-UI-Demo.mp4" controls width="100%"></video>
+
 ## What It Does
 
 Instead of outputting plain text responses, AI agents using this skill can render:
