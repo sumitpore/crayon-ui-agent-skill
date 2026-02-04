@@ -4,7 +4,7 @@ An Agent Skill that enables AI assistants to render responses as interactive UI 
 
 ## Demo
 
-<video src="URL" controls width="100%"></video>
+https://github.com/user-attachments/assets/8db7b882-b427-451c-b170-cf2506bdbc99
 
 ## What It Does
 
