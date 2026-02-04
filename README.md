@@ -42,23 +42,6 @@ Instead of outputting plain text responses, AI agents using this skill can rende
 
 3. **Restart Cursor** to load the new skill.
 
-### For Claude Desktop
-
-1. **Copy the skill folder** to Claude's skills directory:
-
-   ```bash
-   cp -r crayon-ui-agent-skill ~/.claude/skills/
-   ```
-
-2. **Install dependencies**:
-
-   ```bash
-   cd ~/.claude/skills/crayon-ui-agent-skill/app
-   npm install
-   ```
-
-3. **Configure Claude Desktop** to recognize the skill by adding it to your Claude Desktop settings if required.
-
 ### For Claude Code / Codex CLI
 
 1. **Copy the skill folder** to the Codex skills directory:
