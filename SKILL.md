@@ -38,7 +38,37 @@ Tell the user to open http://localhost:5500 in their browser if they haven't alr
 1. Ensure the Crayon server is running (see above)
 2. Generate a JSON structure describing the UI components
 3. Write the JSON to `~/.crayon/response.json`
-4. The Crayon app auto-updates to display the UI
+4. **Validate the JSON** by running: `<skill-directory>/scripts/validate.sh`
+5. If validation fails, fix the errors and repeat from step 3
+6. Only consider complete when validation passes
+7. The Crayon app auto-updates to display the UI
+
+### Validation Step (MANDATORY)
+
+After writing to `response.json`, always validate your output:
+
+```bash
+<skill-directory>/scripts/validate.sh
+```
+
+If validation fails, you will see specific errors like:
+
+```
+VALIDATION FAILED
+
+ERROR at components.0.props (MarkDownRenderer): must NOT have additional properties
+  FIX: Use "textMarkdown" instead of "markdownString"
+
+ERROR at components.2.props.children.0.props (ListItem): must have required property 'title'
+  FIX: Add required prop "title"
+```
+
+Fix each error and re-validate until you see:
+
+```
+VALIDATION PASSED
+Validated X components successfully.
+```
 
 ## Quick Start
 
@@ -103,21 +133,348 @@ Use `children` prop for composition:
 
 ## Available Components
 
-See [references/components.md](references/components.md) for the complete component reference.
+The complete JSON Schema for validation is at [references/schema.json](references/schema.json).
 
-### Common Components
+### All Components by Category
 
-| Component | Use Case |
-|-----------|----------|
-| Card, CardHeader | Structured content containers |
-| TextContent | Plain text display |
-| MarkDownRenderer | Markdown formatted text |
-| CodeBlock | Syntax-highlighted code |
-| Table | Tabular data |
-| BarChart, LineChart, PieChart | Data visualization charts |
-| ListBlock, ListItem | Lists |
-| Callout | Important notices |
-| Button | Actions |
+| Category | Components |
+|----------|------------|
+| **Layout** | Card, CardHeader, Accordion, AccordionItem, AccordionTrigger, AccordionContent, Tabs, TabsList, TabsTrigger, TabsContent, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext |
+| **Content** | TextContent, MarkDownRenderer, CodeBlock, Image |
+| **Data Display** | Table, ListBlock, ListItem, Steps |
+| **Charts** | BarChart, LineChart, AreaChart, PieChart |
+| **Feedback** | Callout, TextCallout, Tag, TagBlock, FollowUpBlock, FollowUpItem, MessageLoading |
+| **Forms** | Button, Buttons, Input, TextArea, Select, CheckBoxGroup, CheckBoxItem, RadioGroup, RadioItem, SwitchGroup, SwitchItem, Slider, DatePicker, Label |
+| **Utility** | Separator |
+
+### Component Props Reference
+
+#### Layout Components
+
+**Card** - Container for grouped content
+```json
+{ "component": "Card", "props": { "children": [ /* nested components */ ] } }
+```
+
+**CardHeader** - Header with title and optional subtitle
+```json
+{ "component": "CardHeader", "props": { "title": "Title", "subtitle": "Optional subtitle" } }
+```
+
+**Accordion** - Collapsible sections
+```json
+{
+  "component": "Accordion",
+  "props": {
+    "type": "single",
+    "collapsible": true,
+    "children": [
+      {
+        "component": "AccordionItem",
+        "props": {
+          "value": "item-1",
+          "children": [
+            { "component": "AccordionTrigger", "props": { "text": "Section Title" } },
+            { "component": "AccordionContent", "props": { "children": "Content here" } }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+**Tabs** - Tabbed navigation
+```json
+{
+  "component": "Tabs",
+  "props": {
+    "defaultValue": "tab1",
+    "children": [
+      {
+        "component": "TabsList",
+        "props": {
+          "children": [
+            { "component": "TabsTrigger", "props": { "value": "tab1", "text": "Tab 1" } },
+            { "component": "TabsTrigger", "props": { "value": "tab2", "text": "Tab 2" } }
+          ]
+        }
+      },
+      { "component": "TabsContent", "props": { "value": "tab1", "children": "Content 1" } },
+      { "component": "TabsContent", "props": { "value": "tab2", "children": "Content 2" } }
+    ]
+  }
+}
+```
+
+**Carousel** - Scrollable slides
+```json
+{
+  "component": "Carousel",
+  "props": {
+    "showButtons": true,
+    "children": [
+      {
+        "component": "CarouselContent",
+        "props": {
+          "children": [
+            { "component": "CarouselItem", "props": { "children": "Slide 1" } },
+            { "component": "CarouselItem", "props": { "children": "Slide 2" } }
+          ]
+        }
+      },
+      { "component": "CarouselPrevious", "props": {} },
+      { "component": "CarouselNext", "props": {} }
+    ]
+  }
+}
+```
+
+#### Content Components
+
+**TextContent** - Plain text
+```json
+{ "component": "TextContent", "props": { "children": "Plain text here" } }
+```
+
+**MarkDownRenderer** - Markdown text (NOTE: use `textMarkdown`, NOT `markdownString`)
+```json
+{ "component": "MarkDownRenderer", "props": { "textMarkdown": "# Heading\n\n**Bold** and *italic*" } }
+```
+
+**CodeBlock** - Syntax-highlighted code
+```json
+{ "component": "CodeBlock", "props": { "codeString": "const x = 1;", "language": "javascript", "showLineNumbers": true } }
+```
+
+**Image** - Display image
+```json
+{ "component": "Image", "props": { "src": "https://example.com/img.png", "alt": "Description" } }
+```
+
+#### Data Display Components
+
+**Table** - Tabular data (NOTE: use `accessorKey`, NOT `key`)
+```json
+{
+  "component": "Table",
+  "props": {
+    "columns": [
+      { "header": "Name", "accessorKey": "name" },
+      { "header": "Value", "accessorKey": "value" }
+    ],
+    "data": [
+      { "name": "Item 1", "value": 100 },
+      { "name": "Item 2", "value": 200 }
+    ]
+  }
+}
+```
+
+**ListBlock / ListItem** - Lists (NOTE: ListItem uses `title`, NOT `children`)
+```json
+{
+  "component": "ListBlock",
+  "props": {
+    "children": [
+      { "component": "ListItem", "props": { "title": "First item", "description": "Optional description" } },
+      { "component": "ListItem", "props": { "title": "Second item" } }
+    ]
+  }
+}
+```
+
+**Steps** - Step-by-step progress
+```json
+{
+  "component": "Steps",
+  "props": {
+    "steps": [
+      { "title": "Step 1", "description": "Do this first" },
+      { "title": "Step 2", "description": "Then this" }
+    ]
+  }
+}
+```
+
+#### Charts
+
+**BarChart / LineChart / AreaChart**
+```json
+{
+  "component": "BarChart",
+  "props": {
+    "data": [
+      { "name": "A", "value": 10 },
+      { "name": "B", "value": 20 }
+    ],
+    "xKey": "name",
+    "yKeys": ["value"]
+  }
+}
+```
+
+**PieChart**
+```json
+{
+  "component": "PieChart",
+  "props": {
+    "data": [
+      { "category": "A", "value": 40 },
+      { "category": "B", "value": 60 }
+    ],
+    "categoryKey": "category",
+    "dataKey": "value"
+  }
+}
+```
+
+#### Feedback Components
+
+**Callout** - Important notices (variants: neutral, info, warning, error, success)
+```json
+{ "component": "Callout", "props": { "variant": "info", "title": "Note", "description": "Important info" } }
+```
+
+**TextCallout** - Highlighted text block
+```json
+{ "component": "TextCallout", "props": { "title": "Note", "description": "Highlighted info" } }
+```
+
+**Tag / TagBlock** - Labels
+```json
+{
+  "component": "TagBlock",
+  "props": {
+    "children": [
+      { "component": "Tag", "props": { "text": "Tag 1" } },
+      { "component": "Tag", "props": { "text": "Tag 2" } }
+    ]
+  }
+}
+```
+
+**FollowUpBlock / FollowUpItem** - Suggestions
+```json
+{
+  "component": "FollowUpBlock",
+  "props": {
+    "children": [
+      { "component": "FollowUpItem", "props": { "text": "Tell me more" } },
+      { "component": "FollowUpItem", "props": { "text": "Show examples" } }
+    ]
+  }
+}
+```
+
+**MessageLoading** - Loading indicator
+```json
+{ "component": "MessageLoading", "props": {} }
+```
+
+#### Form Components
+
+**Button** - Clickable button (variants: primary, secondary, outline, ghost)
+```json
+{ "component": "Button", "props": { "children": "Click Me", "variant": "primary" } }
+```
+
+**Buttons** - Button group
+```json
+{
+  "component": "Buttons",
+  "props": {
+    "children": [
+      { "component": "Button", "props": { "children": "Save" } },
+      { "component": "Button", "props": { "children": "Cancel", "variant": "secondary" } }
+    ]
+  }
+}
+```
+
+**Input** - Text input
+```json
+{ "component": "Input", "props": { "placeholder": "Enter text...", "label": "Name" } }
+```
+
+**TextArea** - Multi-line input
+```json
+{ "component": "TextArea", "props": { "placeholder": "Enter description...", "rows": 4 } }
+```
+
+**Select** - Dropdown
+```json
+{
+  "component": "Select",
+  "props": {
+    "placeholder": "Choose...",
+    "options": [
+      { "label": "Option 1", "value": "opt1" },
+      { "label": "Option 2", "value": "opt2" }
+    ]
+  }
+}
+```
+
+**CheckBoxGroup / CheckBoxItem**
+```json
+{
+  "component": "CheckBoxGroup",
+  "props": {
+    "children": [
+      { "component": "CheckBoxItem", "props": { "label": "Option A", "value": "a", "description": "Description" } },
+      { "component": "CheckBoxItem", "props": { "label": "Option B", "value": "b" } }
+    ]
+  }
+}
+```
+
+**RadioGroup / RadioItem**
+```json
+{
+  "component": "RadioGroup",
+  "props": {
+    "children": [
+      { "component": "RadioItem", "props": { "label": "Choice 1", "value": "1" } },
+      { "component": "RadioItem", "props": { "label": "Choice 2", "value": "2" } }
+    ]
+  }
+}
+```
+
+**SwitchGroup / SwitchItem**
+```json
+{
+  "component": "SwitchGroup",
+  "props": {
+    "children": [
+      { "component": "SwitchItem", "props": { "label": "Enable feature", "value": "feature" } }
+    ]
+  }
+}
+```
+
+**Slider** - Range slider
+```json
+{ "component": "Slider", "props": { "min": 0, "max": 100, "defaultValue": [50] } }
+```
+
+**DatePicker** - Date selection
+```json
+{ "component": "DatePicker", "props": { "placeholder": "Select date" } }
+```
+
+**Label** - Form label
+```json
+{ "component": "Label", "props": { "children": "Field Label" } }
+```
+
+#### Utility Components
+
+**Separator** - Visual divider
+```json
+{ "component": "Separator", "props": {} }
+```
 
 ## Examples
 
@@ -267,6 +624,18 @@ EOF
 
 1. **Always check if the server is running first** - Use `curl -s -o /dev/null -w "%{http_code}" http://localhost:5500` to check. If not running, execute `<skill-directory>/scripts/start.sh`
 2. **Wait for server to be ready** - After starting, wait a few seconds and verify with curl before writing to response.json
-3. **Use appropriate components** for the data type (Table for tabular, Charts for trends, Cards for entities)
-4. **Compose with children** to build complex layouts
-5. **Check component reference** for available props
+3. **Always validate after writing** - Run `<skill-directory>/scripts/validate.sh` to catch schema errors before considering the task complete
+4. **Use appropriate components** for the data type (Table for tabular, Charts for trends, Cards for entities)
+5. **Compose with children** to build complex layouts
+6. **Refer to the props reference above** for exact prop names - the validator will catch mistakes
+
+## Common Schema Mistakes to Avoid
+
+| Component | Wrong | Correct |
+|-----------|-------|---------|
+| MarkDownRenderer | `markdownString`, `markdown`, `content` | `textMarkdown` |
+| ListItem | `children: "text"` | `title: "text"` (+ optional `description`) |
+| ListBlock | `ordered: true` | Remove `ordered` (not supported) |
+| CodeBlock | `code`, `lang` | `codeString`, `language` |
+| Table columns | `key` | `accessorKey` |
+| Callout | `message`, `type` | `description`, `variant` |

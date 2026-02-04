@@ -36,8 +36,13 @@ Instead of outputting plain text responses, AI agents using this skill can rende
 2. **Install dependencies**:
 
    ```bash
-   cd ~/.cursor/skills/crayon-ui-agent-skill/app
+   cd ~/.cursor/skills/crayon-ui-agent-skill
+   
+   # Install validator dependencies (ajv for JSON schema validation)
    npm install
+   
+   # Install app dependencies (React UI renderer)
+   cd app && npm install
    ```
 
 3. **Restart Cursor** to load the new skill.
@@ -53,13 +58,19 @@ Instead of outputting plain text responses, AI agents using this skill can rende
 2. **Install dependencies**:
 
    ```bash
-   cd ~/.codex/skills/crayon-ui-agent-skill/app
+   cd ~/.codex/skills/crayon-ui-agent-skill
+   
+   # Install validator dependencies
    npm install
+   
+   # Install app dependencies
+   cd app && npm install
    ```
 
 ### For Other AI Tools
 
-The skill follows the [Agent Skills](https://agentskills.io/) open format. Copy the skill folder to your tool's skills directory and install the npm dependencies in the `app/` folder.
+The skill follows the [Agent Skills](https://agentskills.io/) open format. Copy
+the skill folder to your tool's skills directory and run `npm install` in both the skill root (for LLM response validation) and the `app/` folder (for the UI renderer).
 
 ## Usage
 
@@ -98,7 +109,9 @@ Once installed, the AI agent will automatically use this skill when appropriate.
 
 1. The AI generates structured JSON describing UI components
 2. The JSON is written to `~/.crayon/response.json`
-3. The Crayon app (running in your browser) auto-detects changes and renders the UI
+3. The AI validates the JSON using `./scripts/validate.sh`
+4. If validation fails, the AI fixes errors and re-validates
+5. The Crayon app (running in your browser) auto-detects changes and renders the UI
 
 ## File Structure
 
@@ -106,6 +119,7 @@ Once installed, the AI agent will automatically use this skill when appropriate.
 crayon-ui-agent-skill/
 ├── SKILL.md              # Main skill instructions for AI agents
 ├── README.md             # This file
+├── package.json          # Validator dependencies (ajv)
 ├── app/                  # React app that renders the UI
 │   ├── src/
 │   │   ├── App.tsx
@@ -114,10 +128,12 @@ crayon-ui-agent-skill/
 │   ├── package.json
 │   └── vite.config.ts
 ├── references/
-│   ├── components.md     # Complete component reference
+│   ├── schema.json       # JSON Schema for component validation
 │   └── BRAND.md          # Styling/theming guide
 └── scripts/
-    └── start.sh          # Server startup script
+    ├── start.sh          # Server startup script
+    ├── validate.sh       # Schema validation wrapper
+    └── validate.js       # Validation logic (uses ajv)
 ```
 
 ## Available Components
@@ -131,7 +147,7 @@ crayon-ui-agent-skill/
 | **Feedback** | Callout, TextCallout, Tag, MessageLoading |
 | **Forms** | Button, Input, TextArea, Select, CheckBoxGroup, RadioGroup, Slider, DatePicker |
 
-See [references/components.md](references/components.md) for complete documentation.
+See [SKILL.md](SKILL.md) for complete component documentation with examples.
 
 ## Troubleshooting
 
@@ -151,7 +167,8 @@ See [references/components.md](references/components.md) for complete documentat
 
 1. Verify the component name matches exactly (case-sensitive)
 2. Check that required props are provided
-3. Refer to [references/components.md](references/components.md) for correct prop names
+3. Run `./scripts/validate.sh` to check for schema errors
+4. Refer to [SKILL.md](SKILL.md) for correct prop names and examples
 
 ## Development
 
@@ -159,7 +176,8 @@ To modify the skill:
 
 1. Edit components in `app/src/componentRegistry.tsx`
 2. Update styling in `app/src/styles/brand.css`
-3. Update documentation in `references/components.md`
+3. Update schema in `references/schema.json` (for validation)
+4. Update examples in `SKILL.md` (for AI agent reference)
 
 The app uses hot-reload, so changes appear immediately.
 

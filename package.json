@@ -1,0 +1,13 @@
+{
+  "name": "crayon-ui-validator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Schema validator for Crayon UI responses",
+  "scripts": {
+    "validate": "node scripts/validate.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  }
+}

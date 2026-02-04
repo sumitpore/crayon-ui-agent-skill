@@ -1,0 +1,996 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Crayon UI Response Schema",
+  "description": "JSON Schema for validating Crayon UI component responses",
+  "type": "object",
+  "required": ["components"],
+  "additionalProperties": false,
+  "properties": {
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Component"
+      }
+    }
+  },
+  "definitions": {
+    "Component": {
+      "type": "object",
+      "required": ["component", "props"],
+      "properties": {
+        "component": {
+          "type": "string",
+          "enum": [
+            "Card",
+            "CardHeader",
+            "Accordion",
+            "AccordionItem",
+            "AccordionTrigger",
+            "AccordionContent",
+            "Tabs",
+            "TabsList",
+            "TabsTrigger",
+            "TabsContent",
+            "Carousel",
+            "CarouselContent",
+            "CarouselItem",
+            "CarouselPrevious",
+            "CarouselNext",
+            "TextContent",
+            "MarkDownRenderer",
+            "CodeBlock",
+            "Image",
+            "Table",
+            "ListBlock",
+            "ListItem",
+            "Steps",
+            "BarChart",
+            "LineChart",
+            "AreaChart",
+            "PieChart",
+            "Callout",
+            "TextCallout",
+            "Tag",
+            "TagBlock",
+            "FollowUpBlock",
+            "FollowUpItem",
+            "MessageLoading",
+            "Button",
+            "Buttons",
+            "Input",
+            "TextArea",
+            "Select",
+            "CheckBoxGroup",
+            "CheckBoxItem",
+            "RadioGroup",
+            "RadioItem",
+            "SwitchGroup",
+            "SwitchItem",
+            "Slider",
+            "DatePicker",
+            "Label",
+            "Separator"
+          ]
+        },
+        "props": {
+          "type": "object"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "component": { "const": "Card" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CardProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CardHeader" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CardHeaderProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Accordion" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/AccordionProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "AccordionItem" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/AccordionItemProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "AccordionTrigger" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/AccordionTriggerProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "AccordionContent" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/AccordionContentProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Tabs" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TabsProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "TabsList" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TabsListProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "TabsTrigger" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TabsTriggerProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "TabsContent" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TabsContentProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Carousel" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CarouselProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CarouselContent" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CarouselContentProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CarouselItem" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CarouselItemProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CarouselPrevious" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/EmptyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CarouselNext" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/EmptyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "TextContent" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TextContentProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "MarkDownRenderer" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/MarkDownRendererProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CodeBlock" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CodeBlockProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Image" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ImageProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Table" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TableProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "ListBlock" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ListBlockProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "ListItem" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ListItemProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Steps" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/StepsProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "BarChart" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChartProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "LineChart" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChartProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "AreaChart" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChartProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "PieChart" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/PieChartProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Callout" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CalloutProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "TextCallout" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TextCalloutProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Tag" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TagProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "TagBlock" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChildrenOnlyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "FollowUpBlock" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChildrenOnlyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "FollowUpItem" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/FollowUpItemProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "MessageLoading" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/EmptyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Button" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ButtonProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Buttons" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChildrenOnlyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Input" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/InputProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "TextArea" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/TextAreaProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Select" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/SelectProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CheckBoxGroup" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChildrenOnlyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "CheckBoxItem" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/CheckBoxItemProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "RadioGroup" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChildrenOnlyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "RadioItem" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/RadioItemProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "SwitchGroup" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/ChildrenOnlyProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "SwitchItem" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/SwitchItemProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Slider" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/SliderProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "DatePicker" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/DatePickerProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Label" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/LabelProps" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "component": { "const": "Separator" } }
+          },
+          "then": {
+            "properties": {
+              "props": { "$ref": "#/definitions/EmptyProps" }
+            }
+          }
+        }
+      ]
+    },
+    "Children": {
+      "oneOf": [
+        { "type": "string" },
+        { "$ref": "#/definitions/Component" },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "string" },
+              { "$ref": "#/definitions/Component" }
+            ]
+          }
+        }
+      ]
+    },
+    "EmptyProps": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "ChildrenOnlyProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "CardProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "CardHeaderProps": {
+      "type": "object",
+      "required": ["title"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "AccordionProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { 
+          "type": "string",
+          "enum": ["single", "multiple"]
+        },
+        "collapsible": { "type": "boolean" },
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "AccordionItemProps": {
+      "type": "object",
+      "required": ["value", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "string" },
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "AccordionTriggerProps": {
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string" }
+      }
+    },
+    "AccordionContentProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "TabsProps": {
+      "type": "object",
+      "required": ["defaultValue", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "defaultValue": { "type": "string" },
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "TabsListProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "TabsTriggerProps": {
+      "type": "object",
+      "required": ["value", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "string" },
+        "text": { "type": "string" }
+      }
+    },
+    "TabsContentProps": {
+      "type": "object",
+      "required": ["value", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "string" },
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "CarouselProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "showButtons": { "type": "boolean" },
+        "itemsToScroll": { "type": "number" },
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "CarouselContentProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "CarouselItemProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "TextContentProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "type": "string" }
+      }
+    },
+    "MarkDownRendererProps": {
+      "type": "object",
+      "required": ["textMarkdown"],
+      "additionalProperties": false,
+      "properties": {
+        "textMarkdown": { "type": "string" },
+        "variant": {
+          "type": "string",
+          "enum": ["clear", "card", "sunk"]
+        }
+      }
+    },
+    "CodeBlockProps": {
+      "type": "object",
+      "required": ["codeString"],
+      "additionalProperties": false,
+      "properties": {
+        "codeString": { "type": "string" },
+        "language": { "type": "string" },
+        "showLineNumbers": { "type": "boolean" }
+      }
+    },
+    "ImageProps": {
+      "type": "object",
+      "required": ["src"],
+      "additionalProperties": false,
+      "properties": {
+        "src": { "type": "string" },
+        "alt": { "type": "string" }
+      }
+    },
+    "TableProps": {
+      "type": "object",
+      "required": ["columns", "data"],
+      "additionalProperties": false,
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["header", "accessorKey"],
+            "additionalProperties": false,
+            "properties": {
+              "header": { "type": "string" },
+              "accessorKey": { "type": "string" }
+            }
+          }
+        },
+        "data": {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      }
+    },
+    "ListBlockProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "$ref": "#/definitions/Children" }
+      }
+    },
+    "ListItemProps": {
+      "type": "object",
+      "required": ["title"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "StepsProps": {
+      "type": "object",
+      "required": ["steps"],
+      "additionalProperties": false,
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title"],
+            "additionalProperties": false,
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "ChartProps": {
+      "type": "object",
+      "required": ["data"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "data": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "xKey": { "type": "string" },
+        "yKeys": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "PieChartProps": {
+      "type": "object",
+      "required": ["data", "categoryKey", "dataKey"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "data": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "categoryKey": { "type": "string" },
+        "dataKey": { "type": "string" }
+      }
+    },
+    "CalloutProps": {
+      "type": "object",
+      "required": ["title", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": ["neutral", "info", "warning", "error", "success"]
+        },
+        "title": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "TextCalloutProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "variant": {
+          "type": "string",
+          "enum": ["neutral", "info", "warning", "success", "danger"]
+        }
+      }
+    },
+    "TagProps": {
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string" }
+      }
+    },
+    "FollowUpItemProps": {
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string" }
+      }
+    },
+    "ButtonProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "type": "string" },
+        "variant": {
+          "type": "string",
+          "enum": ["primary", "secondary", "outline", "ghost"]
+        }
+      }
+    },
+    "InputProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "placeholder": { "type": "string" },
+        "label": { "type": "string" }
+      }
+    },
+    "TextAreaProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "placeholder": { "type": "string" },
+        "rows": { "type": "number" }
+      }
+    },
+    "SelectProps": {
+      "type": "object",
+      "required": ["options"],
+      "additionalProperties": false,
+      "properties": {
+        "placeholder": { "type": "string" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "value"],
+            "additionalProperties": false,
+            "properties": {
+              "label": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "CheckBoxItemProps": {
+      "type": "object",
+      "required": ["label", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    },
+    "RadioItemProps": {
+      "type": "object",
+      "required": ["label", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    },
+    "SwitchItemProps": {
+      "type": "object",
+      "required": ["label", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    },
+    "SliderProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "step": { "type": "number" },
+        "defaultValue": {
+          "type": "array",
+          "items": { "type": "number" }
+        }
+      }
+    },
+    "DatePickerProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "placeholder": { "type": "string" }
+      }
+    },
+    "LabelProps": {
+      "type": "object",
+      "required": ["children"],
+      "additionalProperties": false,
+      "properties": {
+        "children": { "type": "string" }
+      }
+    }
+  }
+}
