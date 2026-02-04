@@ -4,7 +4,7 @@ An Agent Skill that enables AI assistants to render responses as interactive UI 
 
 ## Demo
 
-<video src="Crayon-UI-Demo.mp4" controls width="100%"></video>
+<video src="URL" controls width="100%"></video>
 
 ## What It Does
 
