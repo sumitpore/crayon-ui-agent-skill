@@ -1,0 +1,578 @@
+/* Crayon UI Brand Styling */
+
+/* ============================================
+   CLEAN MINIMAL THEME
+   Content-focused, refined details
+   Subtle interactions, warm neutrals
+   ============================================ */
+
+:root {
+  /* Core Backgrounds */
+  --ui-bg: #FFFFFF;
+  --ui-bg-secondary: #F7F6F3;
+  --ui-bg-hover: rgba(55, 53, 47, 0.04);
+  --ui-bg-active: rgba(55, 53, 47, 0.08);
+  
+  /* Text Colors */
+  --ui-text: #37352F;
+  --ui-text-secondary: #787774;
+  --ui-text-tertiary: #9B9A97;
+  --ui-text-placeholder: #C4C4C4;
+  
+  /* Borders */
+  --ui-border: rgba(55, 53, 47, 0.09);
+  --ui-border-strong: rgba(55, 53, 47, 0.16);
+  
+  /* Accent Colors */
+  --accent-blue: #2383E2;
+  --accent-green: #0F7B6C;
+  --accent-red: #E03E3E;
+  --accent-yellow: #DFAB01;
+  --accent-orange: #D9730D;
+  --accent-purple: #9065B0;
+  --accent-pink: #C14C8A;
+  --accent-gray: #9B9A97;
+  
+  /* Tinted Backgrounds */
+  --tint-blue: rgba(35, 131, 226, 0.1);
+  --tint-green: rgba(15, 123, 108, 0.1);
+  --tint-red: rgba(224, 62, 62, 0.1);
+  --tint-yellow: rgba(223, 171, 1, 0.1);
+  --tint-orange: rgba(217, 115, 13, 0.1);
+  --tint-purple: rgba(144, 101, 176, 0.1);
+  --tint-gray: rgba(155, 154, 151, 0.1);
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  
+  /* Typography */
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  
+  /* Radius - Subtle rounding */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  
+  /* Shadows - Very subtle */
+  --shadow-sm: rgba(15, 15, 15, 0.04) 0px 0px 0px 1px, rgba(15, 15, 15, 0.03) 0px 3px 6px;
+  --shadow-md: rgba(15, 15, 15, 0.04) 0px 0px 0px 1px, rgba(15, 15, 15, 0.03) 0px 3px 6px, rgba(15, 15, 15, 0.06) 0px 9px 24px;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--ui-bg);
+  color: var(--ui-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--ui-text);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+p {
+  color: var(--ui-text);
+  line-height: 1.6;
+}
+
+code {
+  font-family: var(--font-mono);
+  background-color: var(--ui-bg-secondary);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+  color: var(--accent-red);
+}
+
+/* CodeBlock - Override code styling inside code blocks */
+.crayon-code-block code,
+[class*="crayon-code"] code,
+pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+/* ============================================
+   APP CONTAINER
+   ============================================ */
+
+.crayon-app {
+  min-height: 100vh;
+  background: var(--ui-bg);
+  padding-top: var(--space-lg);
+}
+
+/* Remove any top accent bar */
+.crayon-app::before {
+  display: none;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.crayon-header {
+  padding: 0 !important;
+  margin-bottom: var(--space-lg) !important;
+  border-bottom: none !important;
+}
+
+.crayon-header h1 {
+  display: block !important;
+  margin: 0 !important;
+  font-size: 2.25rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--ui-text) !important;
+  line-height: 1.2 !important;
+}
+
+/* Remove left bar accent */
+.crayon-header h1::before {
+  display: none;
+}
+
+/* ============================================
+   STATUS INDICATOR
+   ============================================ */
+
+.crayon-status {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.75rem !important;
+  color: var(--ui-text-secondary) !important;
+  font-weight: 500 !important;
+  margin-top: var(--space-sm) !important;
+  padding: 3px 8px !important;
+  background: var(--tint-green) !important;
+  border-radius: var(--radius-sm) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.crayon-status::before {
+  content: '' !important;
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--accent-green) !important;
+  border-radius: 50% !important;
+  animation: pulse-subtle 2s infinite !important;
+  box-shadow: none !important;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ============================================
+   CONTENT CONTAINER
+   ============================================ */
+
+.crayon-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 96px var(--space-2xl);
+}
+
+@media (max-width: 768px) {
+  .crayon-content {
+    padding: 0 var(--space-lg) var(--space-2xl);
+  }
+}
+
+/* ============================================
+   COMPONENT WRAPPER
+   ============================================ */
+
+.crayon-component {
+  margin-bottom: 1px !important;
+  padding: var(--space-xs) var(--space-sm) !important;
+  border-radius: var(--radius-sm) !important;
+  transition: background-color 0.1s ease !important;
+  animation: fadeIn 0.2s ease-out;
+  border-left: none !important;
+  background: transparent !important;
+}
+
+.crayon-component:hover {
+  background: var(--ui-bg-hover) !important;
+}
+
+.crayon-component:last-child {
+  margin-bottom: 0 !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+
+.crayon-card {
+  background: var(--ui-bg) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: none !important;
+  border: 1px solid var(--ui-border) !important;
+  padding: var(--space-md) !important;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.crayon-card:hover {
+  box-shadow: var(--shadow-sm) !important;
+  border-color: var(--ui-border-strong) !important;
+  transform: none !important;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.crayon-empty-state {
+  text-align: center !important;
+  padding: var(--space-2xl) var(--space-xl) !important;
+  background: var(--ui-bg-secondary) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px dashed var(--ui-border-strong) !important;
+  margin-top: var(--space-xl) !important;
+}
+
+/* Icon placeholder */
+.crayon-empty-state::before {
+  content: '📄' !important;
+  display: block !important;
+  font-size: 48px !important;
+  margin-bottom: var(--space-md) !important;
+  opacity: 0.6 !important;
+}
+
+.crayon-empty-state p {
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+
+.crayon-empty-state p:first-of-type {
+  font-size: 1.125rem !important;
+  color: var(--ui-text) !important;
+  font-weight: 500 !important;
+  margin-bottom: var(--space-xs) !important;
+}
+
+.crayon-empty-state p:last-of-type {
+  color: var(--ui-text-secondary) !important;
+  font-size: 0.9rem !important;
+}
+
+.crayon-empty-state code {
+  display: inline-block !important;
+  margin-top: var(--space-md) !important;
+  padding: 6px 12px !important;
+  background: var(--ui-bg) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.85rem !important;
+  color: var(--ui-text) !important;
+}
+
+/* ============================================
+   ERROR STATE
+   ============================================ */
+
+.crayon-error {
+  background: var(--tint-red) !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: var(--space-md) !important;
+  margin-bottom: var(--space-md) !important;
+  color: var(--ui-text) !important;
+}
+
+/* ============================================
+   CALLOUT VARIANTS
+   ============================================ */
+
+.crayon-callout {
+  padding: var(--space-md) !important;
+  border-radius: var(--radius-md) !important;
+  border-left: 4px solid !important;
+}
+
+.crayon-callout.crayon-callout--neutral {
+  background: var(--tint-gray) !important;
+  border-left-color: var(--accent-gray) !important;
+}
+
+.crayon-callout.crayon-callout--info {
+  background: var(--tint-blue) !important;
+  border-left-color: var(--accent-blue) !important;
+}
+
+.crayon-callout.crayon-callout--warning {
+  background: var(--tint-yellow) !important;
+  border-left-color: var(--accent-yellow) !important;
+}
+
+.crayon-callout.crayon-callout--success {
+  background: var(--tint-green) !important;
+  border-left-color: var(--accent-green) !important;
+}
+
+.crayon-callout.crayon-callout--error {
+  background: var(--tint-red) !important;
+  border-left-color: var(--accent-red) !important;
+}
+
+.crayon-callout-content-title {
+  font-weight: 600 !important;
+  color: var(--ui-text) !important;
+}
+
+.crayon-callout-content-description {
+  color: var(--ui-text-secondary) !important;
+  margin-top: 4px !important;
+}
+
+/* ============================================
+   CAROUSEL FIX
+   ============================================ */
+
+/* Card containing carousel should clip overflow */
+.crayon-card:has(.crayon-carousel) {
+  overflow: hidden !important;
+}
+
+/* Component wrapper containing carousel needs overflow control */
+.crayon-component:has(.crayon-carousel) {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+.crayon-carousel {
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: calc(100% - 32px) !important; /* Account for card padding */
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+.crayon-carousel-content {
+  display: flex !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  gap: var(--space-md) !important;
+  padding: var(--space-xs) 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.crayon-carousel-content::-webkit-scrollbar {
+  display: none !important;
+}
+
+.crayon-carousel-item {
+  flex: 0 0 200px !important;
+  scroll-snap-align: start !important;
+  padding: var(--space-md) !important;
+  background: var(--ui-bg-secondary) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--ui-border) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Ensure consistent header height in carousel items */
+.crayon-carousel-item > .crayon-header {
+  min-height: 80px !important;
+  height: 80px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
+}
+
+/* Image in carousel should be consistent */
+.crayon-carousel-item .crayon-image,
+.crayon-carousel-item img {
+  margin-top: auto !important;
+  width: 100% !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.crayon-carousel-button {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+}
+
+.crayon-carousel-button-left {
+  left: 0 !important;
+}
+
+.crayon-carousel-button-right {
+  right: 0 !important;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+.crayon-button-base {
+  text-align: center !important;
+  justify-content: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  width: auto !important;
+  max-width: fit-content !important;
+}
+
+/* Accordion trigger should be left-aligned */
+.crayon-accordion-trigger {
+  text-align: left !important;
+  justify-content: space-between !important;
+}
+
+/* ============================================
+   CHECKBOX/RADIO SPACING FIX
+   ============================================ */
+
+.crayon-checkbox-item-content,
+.crayon-radio-item-content {
+  gap: 2px !important;
+}
+
+.crayon-checkbox-item-label,
+.crayon-radio-item-label {
+  margin-bottom: 0 !important;
+  line-height: 1.3 !important;
+}
+
+.crayon-checkbox-item-description,
+.crayon-radio-item-description {
+  margin-top: 0 !important;
+  font-size: 0.85rem !important;
+  color: var(--ui-text-secondary) !important;
+  line-height: 1.3 !important;
+}
+
+
+/* ============================================
+   SCROLLBAR - Minimal
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ui-border-strong);
+  border-radius: 10px;
+  border: 3px solid var(--ui-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ui-text-tertiary);
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ui-bg: #191919;
+    --ui-bg-secondary: #202020;
+    --ui-bg-hover: rgba(255, 255, 255, 0.04);
+    --ui-bg-active: rgba(255, 255, 255, 0.08);
+    
+    --ui-text: rgba(255, 255, 255, 0.9);
+    --ui-text-secondary: rgba(255, 255, 255, 0.6);
+    --ui-text-tertiary: rgba(255, 255, 255, 0.4);
+    
+    --ui-border: rgba(255, 255, 255, 0.09);
+    --ui-border-strong: rgba(255, 255, 255, 0.16);
+  }
+}
+
+/* ============================================
+   SELECTION HIGHLIGHT
+   ============================================ */
+
+::selection {
+  background: var(--accent-blue);
+  color: white;
+}
+
+/* ============================================
+   LINK STYLES
+   ============================================ */
+
+a {
+  color: var(--ui-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ui-border-strong);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.1s ease;
+}
+
+a:hover {
+  text-decoration-color: var(--ui-text);
+}
